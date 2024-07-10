@@ -5,6 +5,10 @@ import { styled } from '@mui/material/styles';
 import useToggle from './hooks/useToggle';
 import EditTodoForm from './EditTodoForm';
 
+const ListItemStyled = styled(ListItem)`
+    height: 64px;
+`;
+
 const ListItemTextStyled = styled(ListItemText, { shouldForwardProp: props => props !== 'done' })(
     ({ done }) => `
     text-decoration: ${done ? 'line-through' : 'none'};
@@ -23,7 +27,7 @@ function Todo({ id, task, completed, removeTodos, toggleTodo, editTodo }) {
     const handleToggleTodo = () => toggleTodo(id);
     const [isEditing, toggle] = useToggle(false);
     return (
-        <ListItem>
+        <ListItemStyled>
             {isEditing ? (
                 <EditTodoForm task={task} id={id} editTodo={editTodo} toggle={toggle} />
             ) : (
@@ -55,7 +59,7 @@ function Todo({ id, task, completed, removeTodos, toggleTodo, editTodo }) {
                     </IconButton>
                 </ListItemSecondaryAction>
             </ContainerStyled> */}
-        </ListItem>
+        </ListItemStyled>
     );
 }
 

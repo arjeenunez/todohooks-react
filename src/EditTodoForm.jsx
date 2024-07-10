@@ -1,6 +1,12 @@
 import React from 'react';
 import { TextField } from '@mui/material';
 import useInputState from './hooks/useInputState';
+import { styled } from '@mui/material/styles';
+
+const FormStyled = styled('form')`
+    margin-left: 1rem;
+    width: 50%;
+`;
 
 function EditTodoForm({ task, id, editTodo, toggle }) {
     const [value, handleChange, reset] = useInputState(task);
@@ -11,9 +17,9 @@ function EditTodoForm({ task, id, editTodo, toggle }) {
         toggle();
     };
     return (
-        <form onSubmit={handleEditTodo}>
-            <TextField variant="standard" onChange={handleChange} value={value} margin="normal" fullWidth />
-        </form>
+        <FormStyled onSubmit={handleEditTodo}>
+            <TextField variant="standard" onChange={handleChange} value={value} margin="normal" fullWidth autoFocus />
+        </FormStyled>
     );
 }
 
