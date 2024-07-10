@@ -4,7 +4,8 @@ import { styled } from '@mui/material/styles';
 import sampleTodos from './SampleTodos';
 import Todolist from './TodoList';
 import TodoForm from './TodoForm';
-import useTodoHooks from './hooks/useTodoHooks';
+import useTodos from './hooks/useTodos';
+import useLocalStorage from './hooks/useLocalStorage';
 
 const PaperStyled = styled(Paper)`
     padding: 0;
@@ -22,11 +23,7 @@ const GridStyled = styled(Grid)`
 `;
 
 function TodoApp() {
-    const calledTodos = JSON.parse(window.localStorage.getItem('todos')) || sampleTodos;
-    const { todos, addTodos, removeTodos, toggleTodo, editTodo } = useTodoHooks(calledTodos);
-    useEffect(() => {
-        window.localStorage.setItem('todos', JSON.stringify(todos));
-    }, [todos]);
+    const { todos, addTodos, removeTodos, toggleTodo, editTodo } = useTodos(sampleTodos);
 
     return (
         <PaperStyled elevation={0}>

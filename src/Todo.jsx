@@ -12,6 +12,7 @@ const ListItemStyled = styled(ListItem)`
 const ListItemTextStyled = styled(ListItemText, { shouldForwardProp: props => props !== 'done' })(
     ({ done }) => `
     text-decoration: ${done ? 'line-through' : 'none'};
+    font-style: ${done ? 'italic' : 'none'};
 `
 );
 
