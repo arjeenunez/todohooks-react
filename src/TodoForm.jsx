@@ -8,12 +8,18 @@ const PaperStyled = styled(Paper)`
     padding: 0 1rem;
 `;
 
-function TodoForm() {
+function TodoForm({ addTodos }) {
     const [value, handleChange, reset] = useInputState('');
+    const handleAddTodos = evt => {
+        evt.preventDefault();
+        addTodos(value);
+        reset();
+    };
     return (
         <PaperStyled>
-            <form action=""></form>
-            <TextField variant="standard" value={value} onChange={handleChange} margin="normal" label="Add a todo" fullWidth />
+            <form onSubmit={handleAddTodos}>
+                <TextField variant="standard" value={value} onChange={handleChange} margin="normal" label="Add a todo" fullWidth />
+            </form>
         </PaperStyled>
     );
 }
