@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Paper, TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import useInputState from './hooks/useInputState';
-import { TodosContext } from './contexts/todos.context';
+import { DispatchContext } from './contexts/todos.context';
 
 const PaperStyled = styled(Paper)`
     margin: 1rem 0;
@@ -10,7 +10,7 @@ const PaperStyled = styled(Paper)`
 `;
 
 function TodoForm() {
-    const { dispatch } = useContext(TodosContext);
+    const dispatch = useContext(DispatchContext);
     const [value, handleChange, reset] = useInputState('');
     const handleAddTodos = evt => {
         evt.preventDefault();

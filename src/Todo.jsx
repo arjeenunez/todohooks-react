@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, memo } from 'react';
 import { ListItem, ListItemText, Checkbox, ListItemSecondaryAction, IconButton } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 import useToggle from './hooks/useToggle';
 import EditTodoForm from './EditTodoForm';
-import { TodosContext } from './contexts/todos.context';
+import { DispatchContext } from './contexts/todos.context';
 
 const ListItemStyled = styled(ListItem)`
     height: 64px;
@@ -18,7 +18,7 @@ const ListItemTextStyled = styled(ListItemText, { shouldForwardProp: props => pr
 );
 
 function Todo({ id, task, completed }) {
-    const { dispatch } = useContext(TodosContext);
+    const dispatch = useContext(DispatchContext);
     const handleRemoveTodo = () => dispatch({ type: 'REMOVE', id: id });
     const handleToggleTodo = () => dispatch({ type: 'TOGGLE', id: id });
     const [isEditing, toggle] = useToggle(false);
@@ -44,4 +44,4 @@ function Todo({ id, task, completed }) {
     );
 }
 
-export default Todo;
+export default memo(Todo);
