@@ -4,10 +4,11 @@ function useLocalStorage(key, defaultValue) {
     const [state, setState] = useState(() => {
         let currentValue;
         try {
-            currentValue = JSON.parse(window.localStorage.getItem(key)) || String(defaultValue);
+            currentValue = JSON.parse(window.localStorage.getItem(key)) || defaultValue;
         } catch {
             currentValue = defaultValue;
         }
+
         return currentValue;
     });
 

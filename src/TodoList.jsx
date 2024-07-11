@@ -2,14 +2,14 @@ import React from 'react';
 import { Paper, List, Divider } from '@mui/material';
 import Todo from './Todo';
 
-function TodoList({ todos, removeTodos, toggleTodo, editTodo }) {
+function TodoList({ todos, removeTodos, toggleTodo, editTodo, id }) {
     return (
         <Paper>
             <List>
-                {todos.map((todo, idx) => (
+                {todos.map((todo, idx, arr) => (
                     <React.Fragment key={todo.id}>
                         <Todo task={todo.task} id={todo.id} completed={todo.completed} removeTodos={removeTodos} toggleTodo={toggleTodo} editTodo={editTodo} />
-                        {idx < todos.length - 1 && <Divider />}
+                        {idx < arr.length - 1 && <Divider />}
                     </React.Fragment>
                 ))}
             </List>

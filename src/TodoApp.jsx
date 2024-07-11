@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Typography, Grid, Paper, AppBar, Toolbar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import sampleTodos from './SampleTodos';
 import Todolist from './TodoList';
 import TodoForm from './TodoForm';
 import useTodos from './hooks/useTodos';
-import useLocalStorage from './hooks/useLocalStorage';
 
 const PaperStyled = styled(Paper)`
     padding: 0;

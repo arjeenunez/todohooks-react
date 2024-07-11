@@ -16,14 +16,8 @@ const ListItemTextStyled = styled(ListItemText, { shouldForwardProp: props => pr
 `
 );
 
-// const ContainerStyled = styled('div', { shouldForwardProp: props => props !== 'isEditing' })(
-//     ({ isEditing }) => `
-//     display: ${isEditing ? 'none' : 'flex'};
-//     align-items: center
-// `
-// );
-
-function Todo({ id, task, completed, removeTodos, toggleTodo, editTodo }) {
+function Todo(props) {
+    const { id, task, completed, removeTodos, toggleTodo, editTodo } = props;
     const handleRemoveTodo = () => removeTodos(id);
     const handleToggleTodo = () => toggleTodo(id);
     const [isEditing, toggle] = useToggle(false);
@@ -45,21 +39,6 @@ function Todo({ id, task, completed, removeTodos, toggleTodo, editTodo }) {
                     </ListItemSecondaryAction>
                 </>
             )}
-            {/* <ContainerStyled isEditing={!isEditing}>
-                <EditTodoForm task={task} id={id} editTodo={editTodo} toggle={toggle} />
-            </ContainerStyled>
-            <ContainerStyled isEditing={isEditing}>
-                <Checkbox color="error" tabIndex={-1} checked={completed} onClick={handleToggleTodo} />
-                <ListItemTextStyled done={completed}>{task}</ListItemTextStyled>
-                <ListItemSecondaryAction>
-                    <IconButton aria-label="delete" onClick={handleRemoveTodo}>
-                        <Delete />
-                    </IconButton>
-                    <IconButton aria-label="edit" onClick={toggle}>
-                        <Edit />
-                    </IconButton>
-                </ListItemSecondaryAction>
-            </ContainerStyled> */}
         </ListItemStyled>
     );
 }
