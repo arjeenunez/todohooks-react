@@ -9,6 +9,5 @@ export default initialTodo => {
         removeTodos: id => setTodos([...todos].filter(todo => todo.id !== id)),
         toggleTodo: id => setTodos(todos.map(todo => (todo.id === id ? { ...todo, completed: !todo.completed } : todo))),
         editTodo: (id, newTask) => setTodos(todos.map(todo => (todo.id === id ? { ...todo, task: newTask } : todo))),
-        dragTodos: arrangedTodos => setTodos(arrangedTodos),
     };
 };

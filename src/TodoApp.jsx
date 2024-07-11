@@ -5,6 +5,7 @@ import sampleTodos from './SampleTodos';
 import Todolist from './TodoList';
 import TodoForm from './TodoForm';
 import useTodos from './hooks/useTodos';
+import { TodosProvider } from './contexts/todos.context';
 
 const PaperStyled = styled(Paper)`
     padding: 0;
@@ -33,8 +34,10 @@ function TodoApp() {
             </AppBarStyled>
             <GridStyled container justifyContent="center">
                 <Grid item xs={11} md={8} lg={4}>
-                    <TodoForm addTodos={addTodos} />
-                    <Todolist todos={todos} removeTodos={removeTodos} toggleTodo={toggleTodo} editTodo={editTodo} />
+                    <TodosProvider>
+                        <TodoForm />
+                        <Todolist />
+                    </TodosProvider>
                 </Grid>
             </GridStyled>
         </PaperStyled>

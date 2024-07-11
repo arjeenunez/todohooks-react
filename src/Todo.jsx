@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ListItem, ListItemText, Checkbox, ListItemSecondaryAction, IconButton } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 import useToggle from './hooks/useToggle';
 import EditTodoForm from './EditTodoForm';
+import { TodosContext } from './contexts/todos.context';
 
 const ListItemStyled = styled(ListItem)`
     height: 64px;
@@ -16,15 +17,15 @@ const ListItemTextStyled = styled(ListItemText, { shouldForwardProp: props => pr
 `
 );
 
-function Todo(props) {
-    const { id, task, completed, removeTodos, toggleTodo, editTodo } = props;
-    const handleRemoveTodo = () => removeTodos(id);
-    const handleToggleTodo = () => toggleTodo(id);
+function Todo({ id, task, completed }) {
+    const { dispatch } = useContext(TodosContext);
+    const handleRemoveTodo = () => dispatch({ type: 'REMOVE', id: id });
+    const handleToggleTodo = () => dispatch({ type: 'TOGGLE', id: id });
     const [isEditing, toggle] = useToggle(false);
     return (
         <ListItemStyled>
             {isEditing ? (
-                <EditTodoForm task={task} id={id} editTodo={editTodo} toggle={toggle} />
+                <EditTodoForm task={task} id={id} toggle={toggle} />
             ) : (
                 <>
                     <Checkbox color="error" tabIndex={-1} checked={completed} onClick={handleToggleTodo} />
